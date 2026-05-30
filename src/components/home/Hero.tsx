@@ -1,13 +1,21 @@
 "use client";
 
-import { motion, Variants, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { ArrowRight, Calendar, Cpu, Code, Settings, Sparkles } from "lucide-react";
+import { motion, Variants, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { ArrowRight, Calendar, Cpu, Code, Settings } from "lucide-react";
 import Link from "next/link";
 import { MouseEvent as ReactMouseEvent } from "react";
+
+const circuitPaths = [
+  "M52 540 C174 388 292 418 380 278 S612 106 784 220 970 346 1104 226 1182 126",
+  "M18 252 C192 188 324 104 500 160 666 212 732 90 910 138 1024 170 1102 258 1196 214",
+  "M74 682 C252 570 394 620 526 486 654 356 742 436 878 392 1004 350 1064 270 1194 310",
+  "M156 104 L292 204 L430 170 L560 286 L720 242 L856 338 L1052 274",
+];
 
 export default function Hero() {
   const headingText = "IEEE Student Branch\nNSSCE";
   const letters = Array.from(headingText);
+  const reduceMotion = useReducedMotion();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -41,11 +49,14 @@ export default function Hero() {
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  // Background Orbs movement (Subtle parallax)
-  const bgOrbX1 = useTransform(smoothX, [-500, 500], [20, -20]);
-  const bgOrbY1 = useTransform(smoothY, [-500, 500], [20, -20]);
-  const bgOrbX2 = useTransform(smoothX, [-500, 500], [-30, 30]);
-  const bgOrbY2 = useTransform(smoothY, [-500, 500], [-30, 30]);
+  // Background depth movement
+  const meshX = useTransform(smoothX, [-500, 500], [28, -28]);
+  const meshY = useTransform(smoothY, [-500, 500], [18, -18]);
+  const gridX = useTransform(smoothX, [-500, 500], [16, -16]);
+  const gridY = useTransform(smoothY, [-500, 500], [10, -10]);
+  const spotlightX = useTransform(smoothX, [-500, 500], ["18%", "82%"]);
+  const spotlightY = useTransform(smoothY, [-360, 360], ["20%", "76%"]);
+  const cursorSpotlight = useMotionTemplate`radial-gradient(circle at ${spotlightX} ${spotlightY}, rgba(0, 194, 255, 0.28), rgba(0, 98, 155, 0.12) 24%, transparent 56%)`;
 
   // Floating shapes movement (Exaggerated parallax)
   const floatX1 = useTransform(smoothX, [-500, 500], [70, -70]);
@@ -74,19 +85,60 @@ export default function Hero() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Background with Animated Gradient Lighting */}
+      {/* Animated technical background */}
       <div className="absolute inset-0 z-0 bg-white pointer-events-none">
-        {/* Parallax Orbs */}
-        <motion.div style={{ x: bgOrbX1, y: bgOrbY1 }} className="absolute inset-0">
-          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-ieee-blue/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }} />
-        </motion.div>
+        <div className="absolute inset-0 bg-[linear-gradient(118deg,#ffffff_0%,#f0fbff_32%,#f7faff_62%,#ffffff_100%)]" />
 
-        <motion.div style={{ x: bgOrbX2, y: bgOrbY2 }} className="absolute inset-0">
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent-cyan/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
-        </motion.div>
+        <motion.div
+          className="hero-energy-field absolute -inset-[28%]"
+          style={{ x: meshX, y: meshY }}
+          animate={reduceMotion ? undefined : { rotate: [0, 5, -4, 0], scale: [1, 1.06, 1] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        />
 
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+        <motion.div className="absolute inset-0 opacity-90" style={{ background: cursorSpotlight }} />
+
+        <motion.div
+          className="hero-circuit-grid absolute inset-0"
+          style={{ x: gridX, y: gridY }}
+        />
+
+        <motion.svg
+          viewBox="0 0 1200 760"
+          preserveAspectRatio="none"
+          className="absolute inset-0 h-full w-full opacity-70"
+        >
+          {circuitPaths.map((path, index) => (
+            <motion.path
+              key={path}
+              d={path}
+              fill="none"
+              stroke={index % 2 === 0 ? "rgba(0,98,155,0.28)" : "rgba(95,158,160,0.24)"}
+              strokeWidth={index === 3 ? 1.3 : 1.8}
+              strokeLinecap="round"
+              strokeDasharray={index === 3 ? "10 18" : "14 24"}
+              initial={reduceMotion ? false : { pathLength: 0, opacity: 0.2 }}
+              animate={
+                reduceMotion
+                  ? undefined
+                  : {
+                      pathLength: [0, 1, 1],
+                      opacity: [0.18, 0.72, 0.28],
+                      strokeDashoffset: [80, 0, -80],
+                    }
+              }
+              transition={{
+                duration: 8 + index * 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: index * 0.65,
+              }}
+            />
+          ))}
+        </motion.svg>
+
+        <div className="hero-scanlines absolute inset-0 opacity-[0.18]" />
+        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-white via-white/80 to-transparent" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 z-10 text-center flex flex-col items-center">
