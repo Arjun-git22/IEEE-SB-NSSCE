@@ -167,7 +167,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-pale-silver flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="pt-8 border-t border-black flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col items-center md:items-start gap-1">
             <p className="text-xs text-black font-medium">
               © {new Date().getFullYear()} IEEE Student Branch NSSCE. All rights reserved.
