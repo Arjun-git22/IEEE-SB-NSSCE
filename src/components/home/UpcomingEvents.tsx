@@ -10,7 +10,7 @@ export default function UpcomingEvents() {
   const upcomingEvents = events.filter(e => e.status === "upcoming" || e.status === "featured").slice(0, 3);
 
   return (
-    <section className="py-24 relative bg-white">
+    <section className="pt-12 pb-24 relative bg-white">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">

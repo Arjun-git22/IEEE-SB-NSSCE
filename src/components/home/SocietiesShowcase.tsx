@@ -91,7 +91,7 @@ export default function SocietiesShowcase() {
   };
 
   return (
-    <section className="pt-12 pb-24 relative overflow-hidden bg-slate-50/50">
+    <section className="pt-12 pb-12 relative overflow-hidden bg-slate-50/50">
       {/* Background decorations */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-ieee-blue/5 rounded-full blur-3xl -z-10"></div>
       
