@@ -58,41 +58,49 @@ export default function SocietiesPage() {
         >
           {societies.map((society) => (
             <motion.div key={society.id} variants={item} className="h-full">
-              <Link href={`/societies/${society.slug}`} className="block h-full">
+              <Link href={`/societies/${society.slug}`} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-ieee-blue rounded-3xl">
                 <motion.div 
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="group relative h-full p-8 rounded-3xl glass border border-pale-silver/40 hover:border-accent-cyan/30 transition-all duration-300 overflow-hidden flex flex-col shadow-sm hover:shadow-xl hover:shadow-ieee-blue/10"
+                  whileHover={{ y: -8 }}
+                  className="group relative h-full bg-white rounded-3xl p-8 border border-slate-200/50 hover:border-transparent transition-all duration-300 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgb(0,98,155,0.08)] overflow-hidden flex flex-col"
                 >
-                  {/* Hover Glow */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-ieee-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  {/* Subtle Gradient Hover Border Effect */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-ieee-blue/30 via-accent-cyan/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10" />
+                  <div className="absolute inset-[1px] rounded-[calc(1.5rem-1px)] bg-white pointer-events-none -z-10" />
                   
+                  {/* Soft Background Glow on Hover */}
+                  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-gradient-to-br from-ieee-blue/5 to-accent-cyan/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
+
                   <div className="relative z-10 flex flex-col h-full">
-                    {society.logo ? (
-                      <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center mb-6 shadow-md border-2 border-slate-100 overflow-hidden p-2">
-                        <img 
-                          src={society.logo} 
-                          alt={society.shortName} 
-                          className="w-full h-full object-contain pointer-events-none"
-                          style={{ transform: society.logoRotation }}
-                        />
-                      </div>
-                    ) : (
-                      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white font-heading font-bold text-xl mb-6 ${society.accentColor} shadow-md`}>
-                        {society.shortName}
-                      </div>
-                    )}
+                    {/* Logo Container */}
+                    <div className="mb-8">
+                      {society.logo ? (
+                        <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-sm border border-slate-100/80 overflow-hidden p-2 group-hover:shadow-md transition-shadow duration-300">
+                          <img 
+                            src={society.logo} 
+                            alt={society.shortName} 
+                            className="w-full h-full object-contain pointer-events-none group-hover:scale-105 transition-transform duration-500"
+                            style={{ transform: society.logoRotation }}
+                          />
+                        </div>
+                      ) : (
+                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white font-heading font-bold text-xl ${society.accentColor} shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
+                          {society.shortName}
+                        </div>
+                      )}
+                    </div>
                     
-                    <h3 className="font-heading font-bold text-2xl leading-tight mb-4 group-hover:text-ieee-blue transition-colors">
+                    <h3 className="font-heading font-bold text-2xl leading-tight mb-3 text-slate-900 group-hover:text-ieee-blue transition-colors duration-300">
                       {society.name}
                     </h3>
                     
-                    <p className="text-muted-foreground mb-8 flex-grow">
+                    <p className="text-slate-500 leading-relaxed mb-8 flex-grow line-clamp-4">
                       {society.description}
                     </p>
                     
-                    <div className="flex items-center font-bold text-ieee-blue mt-auto border-t border-pale-silver/50 pt-4">
-                      Explore Chapter 
-                      <ArrowRight size={18} className="ml-2 group-hover:translate-x-2 transition-transform duration-300" />
+                    {/* Action Area */}
+                    <div className="mt-auto flex items-center text-sm font-semibold text-ieee-blue/80 group-hover:text-ieee-blue transition-colors duration-300">
+                      Explore Chapter
+                      <ArrowRight size={16} className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   </div>
                 </motion.div>

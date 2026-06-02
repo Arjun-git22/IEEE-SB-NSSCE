@@ -96,7 +96,7 @@ export default function Preloader() {
               }}
               className="relative flex justify-center items-center"
             >
-              <Rocket size={80} className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] z-10" />
+              <Rocket size={80} className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] z-10 -rotate-45" />
               
               {/* Exhaust Flames */}
               <motion.div
