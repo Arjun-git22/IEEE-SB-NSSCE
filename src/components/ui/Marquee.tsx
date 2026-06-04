@@ -23,7 +23,7 @@ export default function Marquee({
   const xAnimation = direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"];
   
   return (
-    <div className={`relative w-[110vw] left-1/2 -translate-x-1/2 ${rotate} ${bgColor} border-y border-black overflow-hidden py-3 -my-4 z-20 shadow-sm`}>
+    <div className={`relative w-[110vw] left-1/2 -translate-x-1/2 ${rotate} ${bgColor} border-y-4 border-black overflow-hidden py-3 -my-4 z-20 shadow-[0_4px_0_0_rgba(0,0,0,1)]`}>
       <div className="flex whitespace-nowrap">
         <motion.div
           key={`marquee-${direction}-150`}
@@ -43,10 +43,10 @@ export default function Marquee({
             <div key={i} className="flex gap-6 items-center">
               {[...Array(repeat)].map((_, j) => (
                 <div key={j} className="flex items-center gap-6">
-                  <span className={`font-serif text-lg md:text-xl font-medium tracking-wide uppercase ${textColor}`}>
+                  <span className={`font-heading text-lg md:text-xl font-black tracking-widest uppercase ${textColor}`}>
                     {text}
                   </span>
-                  <Sparkles size={16} className={textColor} />
+                  <Sparkles size={20} className={`${textColor} stroke-[3px]`} />
                 </div>
               ))}
             </div>

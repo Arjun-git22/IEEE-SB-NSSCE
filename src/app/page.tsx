@@ -16,6 +16,9 @@ export default function Home() {
       <UpcomingEvents />
       <AboutSection />
       <AchievementsPreview />
+      <div className="bg-white">
+        <Marquee text="JOIN THE MOVEMENT ✦ SHAPE THE FUTURE" bgColor="bg-[#FFD700]" direction="right" rotate="rotate-2" />
+      </div>
       <CtaSection />
     </div>
   );

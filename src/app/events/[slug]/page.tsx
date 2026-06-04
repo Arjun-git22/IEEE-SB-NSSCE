@@ -28,12 +28,12 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
           <div className="max-w-4xl">
             <div className="flex flex-wrap gap-3 mb-6">
               {society && (
-                <Link href={`/societies/${society.slug}`} className={`px-4 py-1.5 rounded-full text-sm font-bold text-white shadow-sm ${society.accentColor}`}>
+                <Link href={`/societies/${society.slug}`} className={`px-4 py-1.5 rounded-lg border-2 border-black text-white text-sm font-black uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all ${society.accentColor}`}>
                   {society.name}
                 </Link>
               )}
               {event.tags.map(tag => (
-                <span key={tag} className="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium">
+                <span key={tag} className="px-4 py-1.5 rounded-lg bg-white border-2 border-black text-black text-sm font-black uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                   {tag}
                 </span>
               ))}
@@ -87,14 +87,14 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {event.speakers.map((speaker, idx) => (
-                    <div key={idx} className="p-6 rounded-3xl bg-white border border-pale-silver shadow-sm flex gap-4 items-start">
-                      <div className="w-16 h-16 rounded-full bg-slate-100 flex-shrink-0 flex items-center justify-center border-2 border-white shadow-sm overflow-hidden">
+                    <div key={idx} className="p-6 rounded-xl bg-white border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all flex gap-4 items-start">
+                      <div className="w-16 h-16 rounded-full bg-slate-100 flex-shrink-0 flex items-center justify-center border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
                         <User size={24} className="text-slate-400" />
                       </div>
                       <div>
-                        <h3 className="font-heading font-bold text-lg">{speaker.name}</h3>
-                        <p className="text-ieee-blue text-sm font-medium mb-2">{speaker.designation}</p>
-                        <p className="text-sm text-muted-foreground line-clamp-3">{speaker.bio}</p>
+                        <h3 className="font-heading font-black text-xl text-slate-900">{speaker.name}</h3>
+                        <p className="text-ieee-blue text-sm font-bold uppercase tracking-wider mb-2">{speaker.designation}</p>
+                        <p className="text-sm text-slate-600 font-medium line-clamp-3">{speaker.bio}</p>
                       </div>
                     </div>
                   ))}
@@ -106,17 +106,17 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
             {event.agenda && event.agenda.length > 0 && (
               <section>
                 <h2 className="text-3xl font-heading font-bold mb-8 flex items-center gap-2">
-                  <span className="w-2 h-6 bg-ieee-blue rounded-full inline-block"></span>
+                  <span className="w-3 h-8 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-ieee-blue rounded-full inline-block"></span>
                   Agenda
                 </h2>
-                <div className="relative border-l-2 border-pale-silver/50 ml-4 space-y-8">
+                <div className="relative border-l-4 border-black ml-4 space-y-8">
                   {event.agenda.map((item, idx) => (
                     <div key={idx} className="relative pl-8">
-                      <div className="absolute w-4 h-4 bg-white border-2 border-ieee-blue rounded-full -left-[9px] top-1.5" />
-                      <div className="text-sm font-bold text-accent-cyan mb-1">{item.time}</div>
-                      <h3 className="font-heading font-bold text-xl mb-2">{item.title}</h3>
+                      <div className="absolute w-5 h-5 bg-white border-[3px] border-black rounded-full -left-[12px] top-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]" />
+                      <div className="text-sm font-black uppercase tracking-widest text-ieee-blue mb-1 bg-sky-100 px-2 py-1 w-max rounded border-2 border-black">{item.time}</div>
+                      <h3 className="font-heading font-black text-xl mb-2 text-slate-900">{item.title}</h3>
                       {item.description && (
-                        <p className="text-muted-foreground">{item.description}</p>
+                        <p className="text-slate-700 font-medium">{item.description}</p>
                       )}
                     </div>
                   ))}
@@ -127,32 +127,32 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
 
           {/* Sidebar / Sticky CTA */}
           <div className="w-full lg:w-1/3">
-            <div className="sticky top-32 glass p-8 rounded-3xl border border-pale-silver shadow-xl shadow-ieee-blue/5">
-              <h3 className="font-heading font-bold text-2xl mb-2">Registration</h3>
-              <p className="text-muted-foreground mb-6">
+            <div className="sticky top-32 bg-white p-8 rounded-xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+              <h3 className="font-heading font-black text-3xl mb-2 text-slate-900">Registration</h3>
+              <p className="text-slate-700 font-medium mb-6">
                 {isPast
                   ? "This event has already concluded."
                   : "Secure your spot now before tickets run out."}
               </p>
 
               <div className="space-y-4 mb-8">
-                <div className="flex justify-between pb-4 border-b border-pale-silver/50">
-                  <span className="text-muted-foreground">Price</span>
-                  <span className="font-bold text-foreground">Free for Members</span>
+                <div className="flex justify-between pb-4 border-b-2 border-black border-dashed">
+                  <span className="text-slate-600 font-bold uppercase tracking-wider text-sm">Price</span>
+                  <span className="font-black text-slate-900">Free for Members</span>
                 </div>
-                <div className="flex justify-between pb-4 border-b border-pale-silver/50">
-                  <span className="text-muted-foreground">Location</span>
-                  <span className="font-bold text-foreground text-right">{event.venue}</span>
+                <div className="flex justify-between pb-4 border-b-2 border-black border-dashed">
+                  <span className="text-slate-600 font-bold uppercase tracking-wider text-sm">Location</span>
+                  <span className="font-black text-slate-900 text-right">{event.venue}</span>
                 </div>
               </div>
 
               {!isPast ? (
-                <button className="w-full py-4 bg-ieee-blue text-white rounded-xl font-bold hover:bg-ieee-blue/90 transition-colors shadow-md shadow-ieee-blue/20 flex items-center justify-center gap-2 group">
+                <button className="w-full py-4 bg-ieee-blue text-white rounded-xl font-black uppercase tracking-widest border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center justify-center gap-2 group">
                   Register Now
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={20} className="stroke-[3px]" />
                 </button>
               ) : (
-                <button className="w-full py-4 bg-slate-100 text-slate-500 rounded-xl font-bold cursor-not-allowed">
+                <button className="w-full py-4 bg-slate-200 text-slate-500 rounded-xl font-black uppercase tracking-widest border-2 border-slate-400 cursor-not-allowed">
                   Event Ended
                 </button>
               )}
