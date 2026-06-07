@@ -2,38 +2,42 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Rocket } from "lucide-react";
+
+// SVG for the wave effect, using preserveAspectRatio="none" to scale properly to the text height
+const WAVE_SVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800' preserveAspectRatio='none'%3E%3Cpath d='M 0,400 Q 100,350 200,400 T 400,400 T 600,400 T 800,400 L 800,800 L 0,800 Z' fill='white'/%3E%3C/svg%3E`;
 
 export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
-  const [stars, setStars] = useState<any[]>([]);
-
   const [isMounted, setIsMounted] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Generate random stars only on the client to prevent hydration mismatch
-    setStars(
-      Array.from({ length: 50 }).map((_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        size: Math.random() * 3 + 1,
-        delay: Math.random() * 2,
-        duration: Math.random() * 3 + 2,
-      }))
-    );
+    let start = 0;
+    const end = 100;
+    const duration = 2500; // 2.5 seconds
+    const interval = 20;
+    const step = (end - start) / (duration / interval);
 
-    // Fade out after 2.5s
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= end) {
+        setProgress(100);
+        clearInterval(timer);
+      } else {
+        setProgress(start);
+      }
+    }, interval);
+
     const fadeTimer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500);
+    }, 2800);
 
-    // Hard unmount after 3.5s to prevent getting stuck
     const unmountTimer = setTimeout(() => {
       setIsMounted(false);
-    }, 3500);
+    }, 3800);
 
     return () => {
+      clearInterval(timer);
       clearTimeout(fadeTimer);
       clearTimeout(unmountTimer);
     };
@@ -43,120 +47,62 @@ export default function Preloader() {
 
   return (
     <>
+      <style>
+        {`
+          .liquid-text {
+            background-image: url("${WAVE_SVG}");
+            background-color: rgba(255, 255, 255, 0.15);
+            background-size: 800px 200%;
+            background-repeat: repeat-x;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+          }
+        `}
+      </style>
+      <motion.div
+        className="fixed inset-0 z-[100] bg-[#0c0c0c] flex items-center justify-center overflow-hidden"
+        animate={{ 
+          opacity: isLoading ? 1 : 0,
+        }}
+        transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
+      >
         <motion.div
-          animate={{ opacity: isLoading ? 1 : 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className={`fixed inset-0 z-[100] bg-[#0a0f1c] flex flex-col items-center justify-center overflow-hidden ${isLoading ? 'pointer-events-auto' : 'pointer-events-none'}`}
+          animate={
+            !isLoading ? {
+              scale: 80,
+              opacity: 0,
+            } : {
+              scale: 1,
+              opacity: 1
+            }
+          }
+          transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
+          className="relative flex flex-col items-center"
         >
-          {/* Moving Stars Background */}
-          <div className="absolute inset-0 overflow-hidden">
-            {stars.map((star) => (
-              <motion.div
-                key={star.id}
-                className="absolute bg-white rounded-full"
-                style={{
-                  left: star.left,
-                  top: star.top,
-                  width: star.size,
-                  height: star.size,
-                }}
-                animate={{
-                  y: [0, 1000],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  y: {
-                    duration: star.duration,
-                    repeat: Infinity,
-                    ease: "linear",
-                  },
-                  opacity: {
-                    duration: star.duration,
-                    repeat: Infinity,
-                    ease: "linear",
-                    times: [0, 0.5, 1],
-                  },
-                  delay: star.delay,
-                }}
-              />
-            ))}
-          </div>
-
-          <div className="relative z-10 flex flex-col items-center">
-            {/* The Rocket */}
-            <motion.div
-              animate={{
-                y: [0, 2, -2, 2, -2, 0, -800], // Shakes then shoots up
-                scale: [1, 1, 1, 1, 1, 1, 1.5], // Grows slightly as it comes closer while shooting up
+          {/* Main Container */}
+          <div className="relative inline-block">
+            {/* The Liquid Fill Text */}
+            <motion.h1 
+              className="liquid-text text-5xl md:text-7xl lg:text-9xl font-heading font-black tracking-tight select-none py-2 px-1"
+              animate={{ backgroundPositionX: ["0px", "-800px"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              style={{
+                // Map progress 0-100 to backgroundPositionY 0% to 100%
+                backgroundPositionY: `${progress}%`
               }}
-              transition={{
-                duration: 2.2,
-                times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 1], // Shakes for 1.1s, then shoots up for 1.1s
-                ease: "anticipate",
-              }}
-              className="relative flex justify-center items-center"
             >
-              <Rocket size={80} className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] z-10 -rotate-45" />
-              
-              {/* Exhaust Flames */}
-              <motion.div
-                animate={{
-                  height: [20, 60, 30, 80, 40, 150, 0],
-                  opacity: [0.8, 1, 0.8, 1, 0.8, 1, 0],
-                }}
-                transition={{
-                  duration: 2.2,
-                  times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 1],
-                  ease: "easeInOut",
-                }}
-                className="absolute top-[75px] w-8 bg-gradient-to-b from-orange-500 via-yellow-400 to-transparent rounded-b-full blur-[2px] -z-10"
-              />
-              <motion.div
-                animate={{
-                  height: [10, 40, 20, 50, 20, 100, 0],
-                  opacity: [0.6, 0.8, 0.6, 0.8, 0.6, 0.8, 0],
-                }}
-                transition={{
-                  duration: 2.2,
-                  times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 1],
-                  ease: "easeInOut",
-                }}
-                className="absolute top-[75px] w-4 bg-gradient-to-b from-white via-yellow-200 to-transparent rounded-b-full blur-[1px] -z-10"
-              />
-            </motion.div>
+              IEEE SB NSSCE
+            </motion.h1>
 
-            {/* Loading Text */}
-            <motion.div
-              animate={{
-                opacity: [0, 1, 1, 0],
-                y: [20, 0, 0, 20],
-              }}
-              transition={{
-                duration: 2.2,
-                times: [0, 0.2, 0.8, 1],
-                ease: "easeInOut",
-              }}
-              className="mt-12 text-center"
-            >
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-white tracking-widest uppercase mb-2">
-                IEEE SB NSSCE
-              </h2>
-              <div className="flex items-center justify-center gap-2">
-                <p className="text-ieee-blue font-medium tracking-widest text-sm uppercase">
-                  Preparing for Launch
-                </p>
-                {/* Animated ellipsis */}
-                <motion.span
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                  className="text-ieee-blue text-xl leading-none"
-                >
-                  ...
-                </motion.span>
-              </div>
-            </motion.div>
+            {/* Small loading text positioned at bottom right */}
+            <div className="absolute bottom-0 right-2 md:right-4 text-white font-mono text-[10px] md:text-xs tracking-widest flex gap-2 translate-y-[120%] whitespace-nowrap">
+              <span className="opacity-70">loading...</span>
+              <span className="w-12 text-right font-bold">{Math.round(progress)} %</span>
+            </div>
           </div>
         </motion.div>
+      </motion.div>
     </>
   );
 }

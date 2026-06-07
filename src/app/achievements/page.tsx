@@ -16,6 +16,12 @@ const tagColors = [
 
 export default function AchievementsPage() {
   const [activeYear, setActiveYear] = useState<number | "all">("all");
+  const [visibleCount, setVisibleCount] = useState(4);
+
+  const handleYearChange = (year: number | "all") => {
+    setActiveYear(year);
+    setVisibleCount(4);
+  };
 
   // Get unique years sorted descending
   const years = Array.from(new Set(achievements.map(a => a.year))).sort((a, b) => b - a);
@@ -23,6 +29,8 @@ export default function AchievementsPage() {
   const filteredAchievements = activeYear === "all"
     ? achievements.sort((a, b) => b.year - a.year)
     : achievements.filter(a => a.year === activeYear);
+
+  const visibleAchievements = filteredAchievements.slice(0, visibleCount);
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-slate-50/50">
@@ -65,10 +73,10 @@ export default function AchievementsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="flex items-center justify-start md:justify-center overflow-x-auto pb-4 no-scrollbar gap-2"
+          className="flex items-center justify-start overflow-x-auto pb-4 gap-3 snap-x no-scrollbar"
         >
           <button
-            onClick={() => setActiveYear("all")}
+            onClick={() => handleYearChange("all")}
             className={`px-6 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all border-2 border-black ${activeYear === "all"
                 ? "bg-[#FFD700] text-black translate-x-[2px] translate-y-[2px] shadow-none"
                 : "bg-white text-slate-800 hover:bg-slate-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
@@ -79,7 +87,7 @@ export default function AchievementsPage() {
           {years.map(year => (
             <button
               key={year}
-              onClick={() => setActiveYear(year)}
+              onClick={() => handleYearChange(year)}
               className={`px-6 py-2 rounded-xl text-sm font-bold transition-all border-2 border-black ${activeYear === year
                   ? "bg-ieee-blue text-white translate-x-[2px] translate-y-[2px] shadow-none"
                   : "bg-white text-slate-800 hover:bg-slate-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
@@ -98,7 +106,7 @@ export default function AchievementsPage() {
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1.5 bg-black -translate-x-1/2 rounded-full" />
 
           <div className="space-y-16">
-            {filteredAchievements.map((achievement, index) => {
+            {visibleAchievements.map((achievement, index) => {
               const isEven = index % 2 === 0;
               const society = achievement.societyId ? societies.find(s => s.id === achievement.societyId) : null;
 
@@ -185,7 +193,17 @@ export default function AchievementsPage() {
               No achievements found for the selected year.
             </div>
           )}
-        </div>
+
+          {visibleCount < filteredAchievements.length && (
+            <div className="flex justify-center mt-12 md:mt-16 relative z-10">
+              <button
+                onClick={() => setVisibleCount(prev => prev + 4)}
+                className="px-5 py-3 md:px-8 md:py-4 bg-[#FFD700] text-black border-2 md:border-4 border-black rounded-xl font-black text-sm md:text-lg uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] md:hover:translate-x-[4px] md:hover:translate-y-[4px] transition-all"
+              >
+                Load More Achievements
+              </button>
+            </div>
+          )}        </div>
       </section>
     </div>
   );
