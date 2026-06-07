@@ -12,7 +12,6 @@ export default function Home() {
       <Hero />
       <Marquee text="IEEE SB NSSCE ✦ INNOVATING SINCE 1987" bgColor="bg-sky-200" />
       <SocietiesShowcase />
-      <Marquee text="IEEE SB NSSCE ✦ INNOVATING SINCE 1987" bgColor="bg-sky-200" direction="right" rotate="rotate-2" />
       <UpcomingEvents />
       <AboutSection />
       <AchievementsPreview />

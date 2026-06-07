@@ -3,36 +3,24 @@
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Trophy, Star, Award } from "lucide-react";
 import Link from "next/link";
+import { achievements } from "@/data/achievements";
 
-const highlights = [
-  {
-    id: "h1",
-    year: "2025",
-    title: "Best Student Branch Award",
-    description: "Awarded the Outstanding Student Branch within the Kerala Section for exceptional activities and member engagement.",
-    icon: Trophy,
-    color: "text-yellow-500",
-    bgColor: "bg-yellow-500/10",
-  },
-  {
-    id: "h2",
-    year: "2024",
-    title: "Global IEEE PES Darrel Chong",
-    description: "Received Gold level recognition for conducting the highly impactful 'Energy for All' initiative.",
-    icon: Award,
-    color: "text-ieee-blue",
-    bgColor: "bg-ieee-blue/10",
-  },
-  {
-    id: "h3",
-    year: "2024",
-    title: "Regional CS Hackathon Winners",
-    description: "Our Computer Society team secured 1st place at the National Level Hackathon organized by IEEE India Council.",
-    icon: Star,
-    color: "text-accent-cyan",
-    bgColor: "bg-accent-cyan/10",
-  }
+const iconColors = [
+  { icon: Trophy, color: "text-yellow-500", bgColor: "bg-yellow-500/10" },
+  { icon: Award, color: "text-ieee-blue", bgColor: "bg-ieee-blue/10" },
+  { icon: Star, color: "text-accent-cyan", bgColor: "bg-accent-cyan/10" },
 ];
+
+const highlights = achievements.slice(0, 3).map((achievement, index) => {
+  const style = iconColors[index % iconColors.length];
+  return {
+    id: achievement.id,
+    year: achievement.year.toString(),
+    title: achievement.title,
+    description: achievement.description,
+    ...style
+  };
+});
 
 export default function AchievementsPreview() {
   const container: Variants = {

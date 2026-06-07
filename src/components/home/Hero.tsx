@@ -162,14 +162,15 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, -12, 0], x: [0, -10, 0] }}
             transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute top-[20%] right-[12%] w-[150px] text-sky-200/40 drop-shadow-sm pointer-events-none -z-10"
+            className="absolute top-[20%] right-[12%] w-[80px] md:w-[150px] text-sky-200/40 drop-shadow-sm pointer-events-none -z-10"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-auto transform -scale-x-100 scale-y-75"><path d="M17.5 19c2.485 0 4.5-2.015 4.5-4.5 0-2.362-1.82-4.298-4.131-4.484C17.433 6.634 14.536 4 11 4 7.134 4 4 7.134 4 11c0 .238.012.474.035.705C1.782 12.017 0 13.916 0 16.25 0 18.873 2.127 21 4.75 21h12.75z" /></svg>
           </motion.div>
+          {/* Big Background Bird */}
           <motion.div
             animate={{ y: [0, -10, 0], x: [0, 12, 0] }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute top-[5%] left-[45%] w-[120px] text-sky-100/50 drop-shadow-sm pointer-events-none -z-10"
+            className="absolute top-[5%] left-[45%] w-[60px] md:w-[120px] text-sky-100/50 drop-shadow-sm pointer-events-none -z-10"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-auto scale-y-75"><path d="M17.5 19c2.485 0 4.5-2.015 4.5-4.5 0-2.362-1.82-4.298-4.131-4.484C17.433 6.634 14.536 4 11 4 7.134 4 4 7.134 4 11c0 .238.012.474.035.705C1.782 12.017 0 13.916 0 16.25 0 18.873 2.127 21 4.75 21h12.75z" /></svg>
           </motion.div>
@@ -181,7 +182,7 @@ export default function Hero() {
               x: { duration: 45, repeat: Infinity, ease: "linear" },
               y: { duration: 18, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }
             }}
-            className="absolute top-[10%] left-0 w-32 h-32 opacity-60 text-[#2d3748] pointer-events-none -z-10"
+            className="absolute top-[10%] left-0 w-32 h-32 opacity-60 text-[#2d3748] pointer-events-none -z-10 scale-50 md:scale-100 origin-center"
           >
             {/* Bird 1 */}
             <motion.div className="absolute top-0 left-0" animate={{ y: [0, -5, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
@@ -234,7 +235,7 @@ export default function Hero() {
               x: { duration: 55, repeat: Infinity, ease: "linear", delay: 5 },
               y: { duration: 20, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }
             }}
-            className="absolute top-[12%] right-0 w-28 h-28 opacity-50 text-[#2d3748] pointer-events-none -z-10 transform -scale-x-100"
+            className="absolute top-[12%] right-0 w-28 h-28 opacity-50 text-[#2d3748] pointer-events-none -z-10 transform -scale-x-50 scale-y-50 md:-scale-x-100 md:scale-y-100 origin-center"
           >
             {/* Bird 1 */}
             <motion.div className="absolute top-2 left-0" animate={{ y: [0, -4, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>

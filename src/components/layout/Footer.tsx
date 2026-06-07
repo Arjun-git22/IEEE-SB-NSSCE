@@ -159,9 +159,6 @@ export default function Footer() {
               <a href="https://www.instagram.com/ieeesbnssce" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-black transition-all">
                 <SocialIcon name="instagram" />
               </a>
-              <a href="https://github.com/IEEE-NSSCE" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-black transition-all">
-                <SocialIcon name="github" />
-              </a>
             </div>
           </div>
         </div>

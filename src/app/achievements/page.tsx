@@ -5,6 +5,15 @@ import { motion } from "framer-motion";
 import { achievements } from "@/data/achievements";
 import { societies } from "@/data/societies";
 
+const tagColors = [
+  "bg-[#FFD700]",
+  "bg-[#FF90E8]",
+  "bg-[#85E3FF]",
+  "bg-[#BFFCC6]",
+  "bg-[#FFBEBC]",
+  "bg-[#C4FAF8]"
+];
+
 export default function AchievementsPage() {
   const [activeYear, setActiveYear] = useState<number | "all">("all");
 
@@ -43,7 +52,7 @@ export default function AchievementsPage() {
             
             <div className="relative bg-white border-2 border-black p-5 md:p-8 rounded-2xl z-10 shadow-sm text-center">
               <p className="text-lg md:text-xl text-slate-800 font-medium leading-relaxed">
-                A timeline of our proudest moments, milestones, and awards from <span className="font-bold text-ieee-blue">2001 to present</span>.
+                A timeline of our proudest moments, milestones, and awards from <span className="font-bold text-ieee-blue">1987 to present</span>.
               </p>
             </div>
           </motion.div>
@@ -125,8 +134,8 @@ export default function AchievementsPage() {
                           <p className="text-slate-700 font-medium text-sm md:text-base leading-relaxed mb-6">{achievement.description}</p>
 
                           <div className="flex flex-wrap gap-2 mt-auto">
-                            {achievement.tags.map(tag => (
-                              <span key={tag} className="px-3 py-1 rounded-lg bg-slate-100 border-2 border-black text-xs font-bold text-slate-700 uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                            {achievement.tags.map((tag, tagIndex) => (
+                              <span key={tag} className={`px-3 py-1 rounded-lg ${tagColors[tagIndex % tagColors.length]} border-2 border-black text-xs font-bold text-black uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}>
                                 {tag}
                               </span>
                             ))}
@@ -156,8 +165,8 @@ export default function AchievementsPage() {
                           <p className="text-slate-700 font-medium text-sm md:text-base leading-relaxed mb-6">{achievement.description}</p>
 
                           <div className="flex flex-wrap gap-2 mt-auto">
-                            {achievement.tags.map(tag => (
-                              <span key={tag} className="px-3 py-1 rounded-lg bg-slate-100 border-2 border-black text-xs font-bold text-slate-700 uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                            {achievement.tags.map((tag, tagIndex) => (
+                              <span key={tag} className={`px-3 py-1 rounded-lg ${tagColors[tagIndex % tagColors.length]} border-2 border-black text-xs font-bold text-black uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}>
                                 {tag}
                               </span>
                             ))}

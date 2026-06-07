@@ -64,6 +64,7 @@ export interface Event {
 export interface Achievement {
   id: string;
   title: string;
+  date?: string; // ISO 8601 string for precise sorting
   year: number;
   description: string;
   societyId?: string;

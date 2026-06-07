@@ -78,7 +78,7 @@ export default function AboutSection() {
             </div>
 
             <h2 className="text-4xl md:text-5xl font-heading font-black mb-10 leading-tight text-slate-900">
-              Driving Technological <span className="relative inline-block"><span className="relative z-10 text-white px-2">Excellence</span><span className="absolute -bottom-1 left-0 w-full h-full bg-accent-cyan -z-0 -rotate-2 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" /></span> Since 2001
+              Driving Technological <span className="relative inline-block"><span className="relative z-10 text-white px-2">Excellence</span><span className="absolute -bottom-1 left-0 w-full h-full bg-accent-cyan -z-0 -rotate-2 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" /></span> Since 1987
             </h2>
 
             <div className="space-y-6 text-lg text-slate-800 font-medium">
