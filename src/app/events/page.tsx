@@ -93,7 +93,7 @@ export default function EventsPage() {
       const matchesSociety = activeSociety === "all" || event.societyId === activeSociety;
       const matchesYear = activeYear === "all" || new Date(event.date).getFullYear().toString() === activeYear;
       return matchesSearch && matchesSociety && matchesYear;
-    });
+    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }, [activeSociety, activeYear, searchQuery]);
 
   const featuredEvents = useMemo(() => filteredEvents.filter(e => e.status === "featured"), [filteredEvents]);

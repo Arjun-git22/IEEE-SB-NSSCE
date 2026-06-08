@@ -6,7 +6,10 @@ import { Calendar as CalendarIcon, MapPin, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 export default function UpcomingEvents() {
-  const upcomingEvents = events.filter(e => e.status === "upcoming" || e.status === "featured").slice(0, 3);
+  const upcomingEvents = [...events]
+    .filter(e => e.status === "upcoming" || e.status === "featured")
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   return (
     <section className="pt-12 pb-32 relative bg-white">

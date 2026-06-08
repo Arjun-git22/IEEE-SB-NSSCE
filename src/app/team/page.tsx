@@ -7,7 +7,14 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { members } from "@/data/members";
 
-const Lanyard = dynamic(() => import("@/components/ui/Lanyard"), { ssr: false });
+const Lanyard = dynamic(() => import("@/components/ui/Lanyard"), { 
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-32 h-48 bg-slate-200/50 animate-pulse rounded-xl border-2 border-slate-300/50"></div>
+    </div>
+  )
+});
 import { societies } from "@/data/societies";
 
 const CURRENT_TEAM_YEAR = 2026;

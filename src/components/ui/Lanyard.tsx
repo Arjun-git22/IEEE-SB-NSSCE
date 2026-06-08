@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable react/no-unknown-property */
 'use client';
 import { useEffect, useRef, useState, Suspense } from 'react';
@@ -14,6 +15,8 @@ extend({ MeshLineGeometry, MeshLineMaterial });
 // Direct string paths to public folder assets
 const cardGLB = '/card.glb';
 const lanyard = '/lanyard.png';
+
+useGLTF.preload(cardGLB);
 
 export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, transparent = true }) {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
