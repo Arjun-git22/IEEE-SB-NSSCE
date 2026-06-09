@@ -53,14 +53,13 @@ export default function Footer() {
 
             {/* Top Section */}
             <div className="mb-12 lg:mb-16">
-              <div className="mb-6">
+              <div className="mb-6 relative h-12 w-[200px] md:h-16 md:w-[250px]">
                 <Image 
                   src="/logo.png" 
                   alt="IEEE SB NSSCE" 
-                  width={250} 
-                  height={80} 
-                  style={{ width: 'auto' }}
-                  className="w-auto h-12 md:h-16 object-contain brightness-0 invert" 
+                  fill
+                  sizes="250px"
+                  className="object-contain object-left brightness-0 invert" 
                 />
               </div>
               <p className="text-white/60 text-lg leading-relaxed max-w-md font-medium">

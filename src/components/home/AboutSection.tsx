@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { Users, CalendarCheck, Trophy, Layers } from "lucide-react";
@@ -53,7 +54,7 @@ function AnimatedCounter({ value, label, icon: Icon }: { value: number, label: s
 export default function AboutSection() {
   const stats = [
     { value: 150, label: "Active Members", icon: Users },
-    { value: 120, label: "Events Conducted", icon: CalendarCheck },
+    { value: 150, label: "Events Conducted", icon: CalendarCheck },
     { value: 80, label: "Awards & Recognitions", icon: Trophy },
     { value: 13, label: "IEEE Societies", icon: Layers },
   ];
@@ -106,14 +107,55 @@ export default function AboutSection() {
             </div>
           </motion.div>
 
-          {/* Right Side: Stats Grid */}
-          <div className="grid grid-cols-2 gap-4 md:gap-6">
-            {stats.map((stat, i) => (
-              <div key={stat.label} className={i % 2 === 1 ? "mt-0 md:mt-12" : ""}>
-                <AnimatedCounter value={stat.value} label={stat.label} icon={stat.icon} />
+          {/* Right Side: Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, rotate: -1 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+            className="relative w-full aspect-[1080/879] max-w-lg mx-auto lg:max-w-none lg:mx-0 mt-10 lg:mt-0"
+          >
+            {/* Neobrutalist shadow layers */}
+            <div className="absolute inset-0 bg-[#FFD700] rounded-3xl translate-x-3 translate-y-3 border-2 border-black transition-transform duration-300 group-hover:translate-x-5 group-hover:translate-y-5"></div>
+            <div className="absolute inset-0 bg-accent-cyan rounded-3xl translate-x-1.5 translate-y-1.5 border-2 border-black"></div>
+
+            {/* Main Image Container */}
+            <div className="relative w-full h-full rounded-3xl border-2 border-black overflow-hidden bg-white z-10 group cursor-pointer">
+              <Image 
+                src="https://sb-dataset.vercel.app/about/about.png"
+                alt="About IEEE SB NSSCE"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                priority
+              />
+              <div className="absolute inset-0 bg-black/10 transition-opacity duration-300 group-hover:opacity-0"></div>
+            </div>
+            
+            {/* Floating badge */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20, rotate: -5 }}
+              whileInView={{ opacity: 1, y: 0, rotate: -5 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="absolute -bottom-4 -left-2 md:-left-6 bg-white py-2 px-4 rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-20 flex items-center gap-2.5 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300"
+            >
+              <div className="w-10 h-10 bg-[#FFD700] rounded-full flex items-center justify-center text-black border-2 border-black shadow-[inset_-2px_-2px_0px_rgba(0,0,0,0.2)]">
+                <Trophy size={18} className="stroke-[2.5px]" />
               </div>
-            ))}
-          </div>
+              <div className="flex flex-col">
+                <span className="text-sm font-black text-slate-900 leading-none uppercase tracking-wide">Premier</span>
+                <span className="text-xs font-bold text-ieee-blue leading-none mt-1">Student Branch</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Stats Grid Section (Moved below) */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-20 lg:mt-28">
+          {stats.map((stat) => (
+            <AnimatedCounter key={stat.label} value={stat.value} label={stat.label} icon={stat.icon} />
+          ))}
         </div>
       </div>
     </section>

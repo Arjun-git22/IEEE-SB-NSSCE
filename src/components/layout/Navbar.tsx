@@ -48,15 +48,16 @@ export default function Navbar() {
           href="/" 
           className="flex items-center z-50 relative transition-transform hover:scale-105"
         >
-          <Image
-            src="/logo.png" 
-            alt="IEEE SB NSSCE Logo" 
-            width={160}
-            height={32}
-            priority
-            style={{ width: 'auto' }}
-            className="h-7 md:h-8 w-auto object-contain drop-shadow-sm" 
-          />
+          <div className="relative h-7 w-[140px] md:h-8 md:w-[160px]">
+            <Image
+              src="/logo.png" 
+              alt="IEEE SB NSSCE Logo" 
+              fill
+              sizes="160px"
+              priority
+              className="object-contain object-left drop-shadow-sm" 
+            />
+          </div>
         </Link>
 
         {/* Desktop Nav & Join Button */}

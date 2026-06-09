@@ -45,7 +45,7 @@ export default function UpcomingEvents() {
               href="/events"
               className="inline-flex items-center gap-3 px-6 py-3 bg-[#FFD700] border-2 border-black rounded-xl text-black font-black uppercase tracking-wider shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all group"
             >
-              View Full Calendar
+              View Past Events
               <span className="w-8 h-8 rounded-full bg-black text-[#FFD700] flex items-center justify-center transition-colors">
                 <ArrowUpRight size={18} className="stroke-[3px]" />
               </span>
