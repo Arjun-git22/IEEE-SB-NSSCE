@@ -121,10 +121,10 @@ export const csEvents: Event[] = [
     price: "20 Rs",
     societyId: "cs", 
     status: "past",
-    banner: "https://sb-dataset.vercel.app/events/cs/e7/1.jpg",
+    banner: "https://sb-dataset.vercel.app/events/cs/e7/1.jpeg",
     tags: ["Coding Competition"],
     gallery: [
-      "https://sb-dataset.vercel.app/events/cs/e7/1.jpg"
+      "https://sb-dataset.vercel.app/events/cs/e7/1.jpeg"
     ]
   }
 ];
