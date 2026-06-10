@@ -30,12 +30,12 @@ export default function SocietiesShowcase() {
 
   const nodes = useMemo<SocietyNode[]>(() => [
     ...societies,
-    { 
-      id: 'view-all', 
-      name: 'Explore All Societies', 
-      shortName: 'ALL', 
-      isViewAll: true, 
-      slug: '' 
+    {
+      id: 'view-all',
+      name: 'Explore All Societies',
+      shortName: 'ALL',
+      isViewAll: true,
+      slug: ''
     }
   ], []);
 
@@ -61,48 +61,47 @@ export default function SocietiesShowcase() {
       const angle = (i / nodeList.length) * 360;
       const radiusVar = isInner ? 'var(--orbit-radius-inner)' : 'var(--orbit-radius-outer)';
       const itemClass = isInner ? 'orbit-item-inner' : 'orbit-item-outer';
-      
+
       return (
-        <div 
+        <div
           key={node.id}
           className="absolute top-1/2 left-1/2 w-0 h-0"
           style={{ transform: `rotate(${angle}deg)` }}
         >
-          <div 
+          <div
             className="absolute"
             style={{ transform: `translateY(calc(-1 * ${radiusVar}))` }}
           >
             <div className={itemClass}>
-               <div 
-                 style={{ transform: `rotate(${-angle}deg)` }}
-                 className="w-12 h-12 md:w-16 md:h-16 -ml-6 -mt-6 md:-ml-8 md:-mt-8 pointer-events-auto"
-                 onMouseEnter={() => !touchInteractionRef.current && setActiveNode(node)}
-                 onMouseLeave={() => !touchInteractionRef.current && setActiveNode(null)}
-               >
-                 <Link 
-                   href={node.isViewAll ? "/societies" : `/societies/${node.slug}`} 
-                   onPointerDown={handlePointerDown}
-                   onClick={(e) => handleNodeClick(e, node)}
-                   className="block w-full h-full outline-none focus:ring-2 focus:ring-ieee-blue rounded-full touch-pan-y"
-                 >
-                   <motion.div 
-                     whileHover={{ scale: 1.15 }}
-                     className={`w-full h-full rounded-full flex items-center justify-center transition-all duration-300 relative overflow-hidden group border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] ${
-                       node.isViewAll 
-                       ? 'bg-[#FFD700] text-black' 
-                       : `bg-white ${node.logo ? '' : 'text-black font-black'} ${node.logo ? '' : node.accentColor || 'bg-ieee-blue'}`
-                     }`}
-                   >
-                     {node.isViewAll ? (
-                       <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform md:w-6 md:h-6 stroke-[3px]" />
-                     ) : node.logo ? (
-                       <Image src={node.logo} alt={node.shortName} width={40} height={40} draggable={false} style={{ transform: node.logoRotation }} className="w-8 h-8 md:w-10 md:h-10 object-contain z-10 pointer-events-none" />
-                     ) : (
-                       <span className="font-black text-[11px] md:text-base tracking-wider z-10">{node.shortName}</span>
-                     )}
-                   </motion.div>
-                 </Link>
-               </div>
+              <div
+                style={{ transform: `rotate(${-angle}deg)` }}
+                className="w-12 h-12 md:w-16 md:h-16 -ml-6 -mt-6 md:-ml-8 md:-mt-8 pointer-events-auto"
+                onMouseEnter={() => !touchInteractionRef.current && setActiveNode(node)}
+                onMouseLeave={() => !touchInteractionRef.current && setActiveNode(null)}
+              >
+                <Link
+                  href={node.isViewAll ? "/societies" : `/societies/${node.slug}`}
+                  onPointerDown={handlePointerDown}
+                  onClick={(e) => handleNodeClick(e, node)}
+                  className="block w-full h-full outline-none focus:ring-2 focus:ring-ieee-blue rounded-full touch-pan-y"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.15 }}
+                    className={`w-full h-full rounded-full flex items-center justify-center transition-all duration-300 relative overflow-hidden group border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] ${node.isViewAll
+                      ? 'bg-[#FFD700] text-black'
+                      : `bg-white ${node.logo ? '' : 'text-black font-black'} ${node.logo ? '' : node.accentColor || 'bg-ieee-blue'}`
+                      }`}
+                  >
+                    {node.isViewAll ? (
+                      <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform md:w-6 md:h-6 stroke-[3px]" />
+                    ) : node.logo ? (
+                      <Image src={node.logo} alt={node.shortName} width={40} height={40} draggable={false} style={{ transform: node.logoRotation }} className="w-8 h-8 md:w-10 md:h-10 object-contain z-10 pointer-events-none" />
+                    ) : (
+                      <span className="font-black text-[11px] md:text-base tracking-wider z-10">{node.shortName}</span>
+                    )}
+                  </motion.div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -114,9 +113,9 @@ export default function SocietiesShowcase() {
     <section className="pt-12 pb-12 relative overflow-hidden bg-slate-50/50">
       {/* Background decorations */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-ieee-blue/5 rounded-full blur-3xl -z-10"></div>
-      
+
       {/* Sticky Note: Vision (Desktop only) */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -140,7 +139,7 @@ export default function SocietiesShowcase() {
       </motion.div>
 
       {/* Sticky Note: Mission (Desktop only) */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -165,7 +164,7 @@ export default function SocietiesShowcase() {
 
       <div className="container mx-auto px-4 md:px-12 lg:px-20 relative z-10">
         <div className="text-center mt-8 mb-10 md:mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -173,7 +172,7 @@ export default function SocietiesShowcase() {
           >
             Explore Our <span className="relative inline-block"><span className="relative z-10 text-white px-2">Societies</span><span className="absolute -bottom-1 left-0 w-full h-full bg-[#FFD700] -z-0 -rotate-2 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" /></span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -186,8 +185,9 @@ export default function SocietiesShowcase() {
 
         {/* Orbit Interactive Visualization */}
         <div className="relative w-full max-w-3xl mx-auto h-[420px] md:h-[650px] flex items-center justify-center orbit-wrapper mt-8 md:mt-12 touch-pan-y">
-          
-          <style dangerouslySetInnerHTML={{ __html: `
+
+          <style dangerouslySetInnerHTML={{
+            __html: `
             :root {
               --orbit-radius-inner: 130px;
               --orbit-radius-outer: 195px;
@@ -240,19 +240,19 @@ export default function SocietiesShowcase() {
 
           {/* Inner Nodes */}
           <div className="absolute inset-0 orbit-container-inner pointer-events-none">
-             {renderNodes(innerNodes, true)}
+            {renderNodes(innerNodes, true)}
           </div>
-          
+
           {/* Outer Nodes */}
           <div className="absolute inset-0 orbit-container-outer pointer-events-none">
-             {renderNodes(outerNodes, false)}
+            {renderNodes(outerNodes, false)}
           </div>
 
           {/* Central Hub */}
           <div className="relative z-10 w-40 h-40 md:w-64 md:h-64 rounded-full bg-white border-[4px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center text-center p-3 md:p-6 overflow-hidden">
             {/* Subtle inner glow */}
             <div className={`absolute inset-0 opacity-20 transition-colors duration-500 ${activeNode && !activeNode.isViewAll ? activeNode.accentColor : 'bg-[#FFD700]'}`}></div>
-            
+
             <AnimatePresence mode="wait">
               {activeNode ? (
                 <motion.div
@@ -263,50 +263,50 @@ export default function SocietiesShowcase() {
                   transition={{ duration: 0.2 }}
                   className="flex flex-col items-center relative z-10 w-full"
                 >
-                   {activeNode.isViewAll ? (
-                     <>
-                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-black bg-[#FFD700] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-black mb-2 md:mb-3">
-                          <ArrowRight size={24} className="md:w-6 md:h-6 stroke-[3px]" />
-                       </div>
-                       <h3 className="font-black text-xs md:text-xl text-slate-900 leading-tight">View All Societies</h3>
-                       <p className="text-[9px] md:text-sm font-bold text-slate-600 mt-1 md:mt-2">Click to explore directory</p>
-                     </>
-                   ) : (
-                     <>
-                       {activeNode.logo ? (
-                         <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center mb-1 md:mb-2 bg-white p-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                           <Image src={activeNode.logo} alt={activeNode.shortName} width={64} height={64} style={{ transform: activeNode.logoRotation }} className="w-full h-full object-contain pointer-events-none" />
-                         </div>
-                       ) : (
-                         <div className={`w-8 h-8 md:w-12 md:h-12 rounded-xl flex items-center justify-center text-white font-black mb-1 md:mb-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-[10px] md:text-base ${activeNode.accentColor}`}>
-                            {activeNode.shortName}
-                         </div>
-                       )}
-                       <h3 className="font-black text-[11px] md:text-lg leading-tight mb-1 md:mb-2 text-slate-900 px-1">{activeNode.name}</h3>
-                       <p className="text-[9px] md:text-xs text-slate-600 line-clamp-3 md:line-clamp-4 px-1 leading-snug">
-                         {activeNode.description}
-                       </p>
-                       {hasTouchInteraction && (
-                         <p className="text-[8px] text-ieee-blue mt-1 font-bold tracking-wider">TAP TO VISIT</p>
-                       )}
-                     </>
-                   )}
+                  {activeNode.isViewAll ? (
+                    <>
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-black bg-[#FFD700] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-black mb-2 md:mb-3">
+                        <ArrowRight size={24} className="md:w-6 md:h-6 stroke-[3px]" />
+                      </div>
+                      <h3 className="font-black text-xs md:text-xl text-slate-900 leading-tight">View All Societies</h3>
+                      <p className="text-[9px] md:text-sm font-bold text-slate-600 mt-1 md:mt-2">Click to explore directory</p>
+                    </>
+                  ) : (
+                    <>
+                      {activeNode.logo ? (
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center mb-1 md:mb-2 bg-white p-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                          <Image src={activeNode.logo} alt={activeNode.shortName} width={64} height={64} style={{ transform: activeNode.logoRotation }} className="w-full h-full object-contain pointer-events-none" />
+                        </div>
+                      ) : (
+                        <div className={`w-8 h-8 md:w-12 md:h-12 rounded-xl flex items-center justify-center text-white font-black mb-1 md:mb-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-[10px] md:text-base ${activeNode.accentColor}`}>
+                          {activeNode.shortName}
+                        </div>
+                      )}
+                      <h3 className="font-black text-[11px] md:text-lg leading-tight mb-1 md:mb-2 text-slate-900 px-1">{activeNode.name}</h3>
+                      <p className="text-[9px] md:text-xs text-slate-600 line-clamp-3 md:line-clamp-4 px-1 leading-snug">
+                        {activeNode.description}
+                      </p>
+                      {hasTouchInteraction && (
+                        <p className="text-[8px] text-ieee-blue mt-1 font-bold tracking-wider">TAP TO VISIT</p>
+                      )}
+                    </>
+                  )}
                 </motion.div>
               ) : (
                 <motion.div
-                   key="default"
-                   initial={{ opacity: 0 }}
-                   animate={{ opacity: 1 }}
-                   exit={{ opacity: 0 }}
-                   className="relative z-10"
+                  key="default"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="relative z-10"
                 >
-                   <div className="w-10 h-10 md:w-16 md:h-16 rounded-xl border-2 border-black bg-[#FFD700] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-black mx-auto mb-3 md:mb-4">
-                      <span className="font-black text-base md:text-3xl">{societies.length}</span>
-                   </div>
-                   <h3 className="font-black text-slate-900 text-xs md:text-xl">IEEE Societies</h3>
-                   <p className="text-[8px] md:text-sm text-slate-600 mt-1 uppercase tracking-widest font-bold">
-                     {hasTouchInteraction ? 'Tap icons to explore' : 'Hover to explore'}
-                   </p>
+                  <div className="w-10 h-10 md:w-16 md:h-16 rounded-xl border-2 border-black bg-[#FFD700] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-black mx-auto mb-3 md:mb-4">
+                    <span className="font-black text-base md:text-3xl">{societies.length}</span>
+                  </div>
+                  <h3 className="font-black text-slate-900 text-xs md:text-xl">IEEE Societies</h3>
+                  <p className="text-[8px] md:text-sm text-slate-600 mt-1 uppercase tracking-widest font-bold">
+                    {hasTouchInteraction ? 'Tap icons to explore' : 'Hover to explore'}
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>

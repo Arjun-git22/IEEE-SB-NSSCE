@@ -126,5 +126,22 @@ export const csEvents: Event[] = [
     gallery: [
       "https://sb-dataset.vercel.app/events/cs/e7/1.jpeg"
     ]
-  }
+  },
+  {
+    id: "cs-e8",
+    slug: "lets-hack",
+    title: "LETSHACK — LetsCode Phase II",
+    description: "LetsHack is the second phase of LetsCode – The LeetCode Challenge, designed to strengthen problem-solving, algorithmic thinking, and coding consistency through engaging coding challenges.",
+    date: "2026-06-12T09:00:00Z",
+    venue: "Online",
+    price: "Free for IEEE CS Members/Lets Code participants and 20 Rs for others ",
+    societyId: "cs", 
+    status: "upcoming",
+    registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSeoJdsjxa29YwqxtUrjeRceJ6Sbz0gZn9eStv_cx29frMEn4g/formResponse",
+    banner: "https://sb-dataset.vercel.app/events/cs/e8/1.jpeg",
+    tags: ["Coding","Leetcode"],
+    gallery: [
+      "https://sb-dataset.vercel.app/events/cs/e8/1.jpeg"
+    ]
+  },
 ];
