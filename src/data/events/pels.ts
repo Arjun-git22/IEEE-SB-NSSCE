@@ -62,7 +62,7 @@ export const pelsEvents: Event[] = [
   banner: "https://sb-dataset.vercel.app/events/pels/e4/1.jpg",
   tags: ["Poster Design", "Competition", "IEEE PELS Day", "Power Electronics"],
   gallery: [
-    "https://sb-dataset.vercel.app/events/pels/e4/1.jpg"
+    "https://sb-dataset.vercel.app/events/pels/e4/1.jpeg"
   ],
 },
 
