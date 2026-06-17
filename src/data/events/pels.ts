@@ -53,7 +53,7 @@ export const pelsEvents: Event[] = [
   id: "pels-e4",
   slug: "poster-design-competition",
   title: "POSTER DESIGN COMPETITION",
-  description: "Unleash your creativity to imagine the future of energy! As part of UNPLUGGED 2026 and the IEEE PELS Day Celebration, IEEE PELS SBC NSSCE presents a Poster Design Competition on the theme 'Powering the Future'. Showcase how power electronics is transforming the world through renewable energy, electric vehicles, smart grids, and other innovations driving a sustainable tomorrow.",
+  description: "Unleash your creativity to imagine the future of energy! As part of UNPLUGGED 2026 and the IEEE PELS Day Celebration, IEEE PELS SBC NSSCE presents a Poster Design Competition on the theme 'Powering the Future'. Showcase how power electronics is transforming the world through renewable energy, electric vehicles, smart grids, and other innovations driving a sustainable tomorrow. 🏆 Prizes: 🥇 1st –₹300, 🥈 2nd –₹200, 🥉 3rd –₹100",
   date: "2026-06-18T00:00:00Z",
   venue: "Online",
   price: "Free",
@@ -65,6 +65,11 @@ export const pelsEvents: Event[] = [
   gallery: [
     "https://sb-dataset.vercel.app/events/pels/e4/1.jpeg"
   ],
+  contacts: [
+      { name: "Yunus", phone: "+918138844943" },
+      { name: "Hiba", phone: "+919074336050" }
+    ]
+
 },
 
 
