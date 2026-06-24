@@ -120,5 +120,43 @@ export const execomEvents: Event[] = [
       "https://sb-dataset.vercel.app/events/execom/e5/10.jpg"
     ]
   },
+  {
+  id: "execom-e6",
+  slug: "CircuitCraft",
+  title: "CircuitCraft - A Hands on LTspice Workshop",
+  description: "Join us for an immersive two-day workshop and explore the world of circuit simulation with LTspice. Learn how to design circuits, analyze waveforms, and test your ideas virtually before bringing them to life.",
+  date: "2026-06-26T10:00:00Z",
+  time: "7:00 pm",
+  venue: "Online",
+  societyId: "execom",
+  status: "upcoming",
+  banner: "https://sb-dataset.vercel.app/events/execom/e6/1.jpg",
+  tags: ["Circuital", "Workshop", "Tech"],
+  registrationUrl: "https://forms.gle/tHLdcxjXEfRsA9Mx6",
+  contacts: [
+    { name: "Aswana N", phone: "+91 90743 19801" }
+  ],
+  gallery: [
+    "https://sb-dataset.vercel.app/events/execom/e6/1.jpg",
+  ],
+  speakers: [
+    {
+      name: "Aswana N",
+      designation: "Chair, IEEE IAS SB NSSCE",
+      bio: "Aswana is a 3rd ECE student of NSSCE equipped with great domain knowledge and experienced in conducting workshop.",
+      photo: "https://sb-dataset.vercel.app/team/default.png"
+    },
+    {
+      name: "Aravind A S",
+      designation: "Chair, IEEE ComSoc SBC NSSCE ",
+      bio: "Aravind is a passionate final year ECE student possessing hands-on experience in Circuit Design, PCB Development along with active involvement in technical communities and leadership roles.",
+      photo: "https://sb-dataset.vercel.app/team/default.png"
+    }
+  ],
+  agenda: [
+    { time: "26 June 2026", title: "CircuitCraft Day-01", description: "Introduction to circuit simulation." },
+    { time: "27 June 2026", title: "CircuitCraft Day-02", description: "Deep dive into LTspice." }
+  ]
+}
 
 ];
