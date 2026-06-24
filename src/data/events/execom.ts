@@ -144,13 +144,13 @@ export const execomEvents: Event[] = [
       name: "Aswana N",
       designation: "Chair, IEEE IAS SB NSSCE",
       bio: "Aswana is a 3rd ECE student of NSSCE equipped with great domain knowledge and experienced in conducting workshop.",
-      photo: "https://sb-dataset.vercel.app/team/default.png"
+      photo: "https://sb-dataset.vercel.app/events/execom/e6/2.jpg"
     },
     {
       name: "Aravind A S",
       designation: "Chair, IEEE ComSoc SBC NSSCE ",
       bio: "Aravind is a passionate final year ECE student possessing hands-on experience in Circuit Design, PCB Development along with active involvement in technical communities and leadership roles.",
-      photo: "https://sb-dataset.vercel.app/team/default.png"
+      photo: "https://sb-dataset.vercel.app/events/execom/e6/3.jpg"
     }
   ],
   agenda: [
