@@ -129,7 +129,7 @@ export const execomEvents: Event[] = [
   time: "7:00 pm",
   venue: "Online",
   societyId: "execom",
-  status: "upcoming",
+  status: "past",
   banner: "https://sb-dataset.vercel.app/events/execom/e6/1.jpg",
   tags: ["Circuital", "Workshop", "Tech"],
   registrationUrl: "https://forms.gle/tHLdcxjXEfRsA9Mx6",
